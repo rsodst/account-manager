@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\Modulbank.Data\Modulbank.Data.csproj" />
+      <ProjectReference Include="..\..\Core\Modulbank.Users\Modulbank.Users.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Modulbank.Packages\Modulbank.Packages.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Modulbank.Settings\Modulbank.Settings.csproj" />
+    </ItemGroup>
+</Project>

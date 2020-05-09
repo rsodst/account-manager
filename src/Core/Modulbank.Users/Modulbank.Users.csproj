@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Modulbank.Data\Modulbank.Data.csproj" />
+      <ProjectReference Include="..\Modulbank.Shared\Modulbank.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models" />
+      <Folder Include="Stores" />
+      <Folder Include="Tables" />
+    </ItemGroup>
+
+</Project>
