@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Modulbank.Settings;
 
-namespace Modulbank.Profiles.Services
+namespace Modulbank.FileStorage.Services
 {
     public interface IPhotoUploaderService
     {
