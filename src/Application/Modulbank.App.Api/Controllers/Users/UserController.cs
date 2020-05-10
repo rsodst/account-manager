@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Modulbank.Users.Queries;
 using Modulbank.Users.Query;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,7 +13,7 @@ namespace Modulbank.App.Api.Controllers.Users
     [ApiController, Authorize]
     public class UserController : AppController
     {
-        private IMediator _mediator;
+        private readonly IMediator _mediator;
 
         public UserController(IMediator mediator)
         {

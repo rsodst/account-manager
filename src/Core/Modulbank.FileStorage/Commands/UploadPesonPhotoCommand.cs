@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Modulbank.Profiles.Command
+namespace Modulbank.FileStorage.Commands
 {
     public class UploadPesonPhotoCommand : IRequest<string>
     {

@@ -2,7 +2,7 @@
 
 namespace Modulbank.FileStorage.Queries
 {
-    public class GetPersonPhotoContentQuery : IRequest<string>
+    public class GetPhotoContentQuery : IRequest<string>
     {
         public string FileName { get; set; }
     }

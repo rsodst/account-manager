@@ -29,6 +29,8 @@ namespace Modulbank.App.Api.Controllers.Users
             return Ok(await _mediator.Send(command));
         }
 
+        // models
+        
         public class SignUpModel : ISignUpCommandSpecification
         {
             [Required]

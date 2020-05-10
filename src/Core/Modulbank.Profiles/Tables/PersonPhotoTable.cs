@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Dapper;
+using Modulbank.Data;
 using Modulbank.Profiles;
 using Modulbank.Profiles.Domain;
 using Modulbank.Shared.Exceptions;
@@ -22,10 +23,10 @@ namespace Modulbank.Users.Tables
             var command = "INSERT INTO public.\"PersonPhoto\" " +
                           " (" +
                           $"\"{nameof(PersonPhoto.Id)}\", " +
-                          $"\"{nameof(PersonPhoto.UserId)}\") " +
+                          $"\"{nameof(PersonPhoto.UserId)}\"," +
                           $"\"{nameof(PersonPhoto.FileName)}\", " +
                           $"\"{nameof(PersonPhoto.CreationDate)}\", " +
-                          $"\"{nameof(PersonPhoto.LastModified)}\", " +
+                          $"\"{nameof(PersonPhoto.LastModified)}\")" +
                           "VALUES (@Id, @UserId, @FileName, @CreationDate, @LastModified);";
 
             int rowsInserted;
@@ -53,14 +54,15 @@ namespace Modulbank.Users.Tables
                           "SET" +
                           $"\"{nameof(PersonPhoto.FileName)}\" = @FileName, " +
                           $"\"{nameof(PersonPhoto.LastModified)}\" = @LastModified" +
-                          $"where \"{nameof(PersonPhoto.UserId)}\" = @UserId";
+                          $" WHERE \"{nameof(PersonPhoto.UserId)}\" = @UserId;";
 
             using (var sqlConnection = await _context.CreateConnectionAsync())
             {
                 await sqlConnection.ExecuteAsync(command, new
                 {
                     personPhoto.FileName,
-                    personPhoto.LastModified
+                    personPhoto.LastModified,
+                    personPhoto.UserId
                 });
             }
 

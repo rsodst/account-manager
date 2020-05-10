@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Modulbank.Accounts;
 using Modulbank.Data.Context;
 using Modulbank.Profiles;
 using Modulbank.Settings;
@@ -19,6 +20,7 @@ namespace Modulbank.App.StartupExtensions
             services.AddSingleton<IUsersContext, UsersContext>();
             services.AddSingleton<IBusContext, BusContext>();
             services.AddSingleton<IProfilesContext, ProfilesContext>();
+            services.AddSingleton<IAccountsContext, AccountsContext>();
 
             return services;
         }
@@ -28,6 +30,7 @@ namespace Modulbank.App.StartupExtensions
             app.ApplicationServices.GetService<IUsersContext>();
             app.ApplicationServices.GetService<IBusContext>();
             app.ApplicationServices.GetService<IProfilesContext>();
+            app.ApplicationServices.GetService<IAccountsContext>();
 
             return app;
         }

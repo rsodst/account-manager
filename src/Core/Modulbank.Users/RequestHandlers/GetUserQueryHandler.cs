@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Modulbank.Users.Domain;
+using Modulbank.Users.Queries;
 
 namespace Modulbank.Users.Query
 {

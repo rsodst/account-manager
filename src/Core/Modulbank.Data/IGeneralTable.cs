@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Modulbank.Users.Tables
+namespace Modulbank.Data
 {
     public interface IGeneralTable<TEntity>
     {

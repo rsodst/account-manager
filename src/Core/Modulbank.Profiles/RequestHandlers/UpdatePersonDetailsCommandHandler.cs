@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Mapster;
 using MediatR;
-using Modulbank.Profiles.Command;
+using Modulbank.Profiles.Commands;
 using Modulbank.Profiles.Domain;
 using Modulbank.Shared.Exceptions;
 using Modulbank.Users.Tables;

@@ -2,27 +2,25 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Modulbank.Profiles.Commands;
-using Modulbank.Profiles.Domain;
-using Modulbank.Profiles.Services;
-using Modulbank.Users.Tables;
+using Modulbank.FileStorage.Commands;
+using Modulbank.FileStorage.Services;
 
-namespace Modulbank.Profiles.RequestHandlers
+namespace Modulbank.FileStorage.RequestHandlers
 {
     public class UploadPersonPhotoCommandHandler : IRequestHandler<UploadPesonPhotoCommand, string>
     {
-        private readonly IPhotoUploaderService _photoUploaderService;
+        private readonly IPhotoService _photoService;
 
-        public UploadPersonPhotoCommandHandler(IPhotoUploaderService photoUploaderService)
+        public UploadPersonPhotoCommandHandler(IPhotoService photoService)
         {
-            _photoUploaderService = photoUploaderService ?? throw new ArgumentNullException(nameof(photoUploaderService));
+            _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
         }
 
         public async Task<string> Handle(UploadPesonPhotoCommand request, CancellationToken cancellationToken)
         {
             // TODO: validate file
-            
-            return await _photoUploaderService.SaveAsync(request.Base64ImageFile);
+
+            return await _photoService.SaveAsync(request.Base64ImageFile);
         }
     }
 }

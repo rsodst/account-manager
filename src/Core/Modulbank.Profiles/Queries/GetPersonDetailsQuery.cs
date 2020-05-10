@@ -2,7 +2,7 @@
 using MediatR;
 using Modulbank.Profiles.Domain;
 
-namespace Modulbank.Profiles.Command
+namespace Modulbank.Profiles.Queries
 {
     public class GetPersonDetailsQuery : IRequest<PersonDetails>
     {

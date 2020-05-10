@@ -10,6 +10,7 @@ namespace Modulbank.App.StartupExtensions
         {
             services.Configure<PostgresConnectionOptions>(configuration.GetSection(typeof(PostgresConnectionOptions).Name));
             services.Configure<JwtOptions>(configuration.GetSection(typeof(JwtOptions).Name));
+            services.Configure<FileStorageOptions>(configuration.GetSection(typeof(FileStorageOptions).Name));
 
             return services;
         }

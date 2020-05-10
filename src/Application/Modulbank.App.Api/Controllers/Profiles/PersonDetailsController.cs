@@ -5,8 +5,9 @@ using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Modulbank.Profiles.Command;
+using Modulbank.Profiles.Commands;
 using Modulbank.Profiles.Domain;
+using Modulbank.Profiles.Queries;
 using Modulbank.Profiles.Specification;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -58,6 +59,8 @@ namespace Modulbank.App.Api.Controllers.Users
             return Ok(await _mediator.Send(command));
         }
 
+        // models
+        
         public class PersonDetailsModel : IPersonDetails
         {
             [Required] 

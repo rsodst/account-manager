@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Modulbank.Profiles.Command;
+using Modulbank.FileStorage.Commands;
+using Modulbank.Profiles.Commands;
+using Modulbank.Profiles.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Modulbank.App.Api.Controllers.Users

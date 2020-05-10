@@ -3,19 +3,19 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Modulbank.Profiles.Command;
+using Modulbank.Profiles.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Modulbank.App.Api.Controllers.Users
 {
-    [Route("profile/person-photo")]
+    [Route("profile/confirmation")]
     [ApiController]
     [Authorize]
-    public class PersonPhotoController : AppController
+    public class ConfirmationController : AppController
     {
         private readonly IMediator _mediator;
 
-        public PersonPhotoController(IMediator mediator)
+        public ConfirmationController(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
@@ -24,42 +24,12 @@ namespace Modulbank.App.Api.Controllers.Users
         [SwaggerOperation(Tags = new[] {"Profile"})]
         public async Task<IActionResult> Get()
         {
-            var query = new GetPersonPhotoQuery
+            var query = new GetProfileConfirmationQuery
             {
                 UserId = CurrentUserId
             };
 
             return Ok(await _mediator.Send(query));
-        }
-
-        [HttpPost]
-        [SwaggerOperation(Tags = new[] {"Profile"})]
-        public async Task<IActionResult> Post(UploadPesonPhotoCommand command)
-        {
-            var fileName = await _mediator.Send(command);
-
-            var createPhotoCommand = new CreatePersonPhotoCommand
-            {
-                UserId = CurrentUserId,
-                FileName = fileName
-            };
-
-            return Ok(await _mediator.Send(createPhotoCommand));
-        }
-
-        [HttpPut]
-        [SwaggerOperation(Tags = new[] {"Profile"})]
-        public async Task<IActionResult> Put(UploadPesonPhotoCommand command)
-        {
-            var fileName = await _mediator.Send(command);
-
-            var updatePhotoCommand = new UpdatePersonPhotoCommand
-            {
-                UserId = CurrentUserId,
-                FileName = fileName
-            };
-
-            return Ok(await _mediator.Send(updatePhotoCommand));
         }
     }
 }

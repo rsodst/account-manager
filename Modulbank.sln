@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulbank.Profiles", "src\C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulbank.Rebus", "src\Core\Modulbank.Rebus\Modulbank.Rebus.csproj", "{C399CFAE-AA7A-4BC1-8229-C97F25ED3B8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulbank.FileStorage", "src\Core\Modulbank.FileStorage\Modulbank.FileStorage.csproj", "{8141B46F-3839-48DF-BE1F-AA0A8B9F3EEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulbank.Accounts", "src\Core\Modulbank.Accounts\Modulbank.Accounts.csproj", "{072A78B4-D031-4822-A6BE-727B46486F81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{C399CFAE-AA7A-4BC1-8229-C97F25ED3B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C399CFAE-AA7A-4BC1-8229-C97F25ED3B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C399CFAE-AA7A-4BC1-8229-C97F25ED3B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8141B46F-3839-48DF-BE1F-AA0A8B9F3EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8141B46F-3839-48DF-BE1F-AA0A8B9F3EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8141B46F-3839-48DF-BE1F-AA0A8B9F3EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8141B46F-3839-48DF-BE1F-AA0A8B9F3EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{072A78B4-D031-4822-A6BE-727B46486F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{072A78B4-D031-4822-A6BE-727B46486F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{072A78B4-D031-4822-A6BE-727B46486F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{072A78B4-D031-4822-A6BE-727B46486F81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HIdeSolutionNode = FALSE
@@ -94,6 +106,8 @@ Global
 		{25435C21-93F3-46BE-BCC8-A6986F0F2162} = {01797B70-6FB2-4E2C-AB63-EF46758F9F9D}
 		{3205B088-CC3B-4B6D-823D-6DA068E3CDBE} = {4294C349-3077-4FDF-937C-13BBF9CD47CC}
 		{C399CFAE-AA7A-4BC1-8229-C97F25ED3B8D} = {4294C349-3077-4FDF-937C-13BBF9CD47CC}
+		{8141B46F-3839-48DF-BE1F-AA0A8B9F3EEF} = {4294C349-3077-4FDF-937C-13BBF9CD47CC}
+		{072A78B4-D031-4822-A6BE-727B46486F81} = {4294C349-3077-4FDF-937C-13BBF9CD47CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuId = {1E049ADF-934C-415B-888C-BAA480AF6A90}

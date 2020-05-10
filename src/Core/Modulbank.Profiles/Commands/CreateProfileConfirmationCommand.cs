@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Modulbank.Profiles.Domain;
 
-namespace Modulbank.Profiles.Command
+namespace Modulbank.Profiles.Commands
 {
     public class CreateProfileConfirmationCommand : IRequest<ProfileConfirmation>
     {
