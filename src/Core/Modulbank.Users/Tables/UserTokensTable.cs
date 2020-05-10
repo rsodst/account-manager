@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
 using Modulbank.Data.Context;
-using Modulbank.Users.Models;
+using Modulbank.Users;
+using Modulbank.Users.Domain;
 
 namespace Identity.Dapper.Postgres.Tables
 {

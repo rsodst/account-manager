@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Identity.Dapper.Postgres.Tables;
 using Microsoft.AspNetCore.Identity;
 using Modulbank.Data.Context;
+using Modulbank.Users.Domain;
 using Modulbank.Users.Extensions;
-using Modulbank.Users.Models;
 using Modulbank.Users.Tables;
 
 namespace Modulbank.Users.Stores

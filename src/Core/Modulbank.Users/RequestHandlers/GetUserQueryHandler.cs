@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Modulbank.Users.Models;
+using Modulbank.Users.Domain;
 
 namespace Modulbank.Users.Query
 {

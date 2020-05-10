@@ -7,8 +7,8 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Modulbank.Shared.Exceptions;
 using Modulbank.Users.Commands;
+using Modulbank.Users.Domain;
 using Modulbank.Users.Messages;
-using Modulbank.Users.Models;
 using Rebus.Bus;
 
 namespace Modulbank.Users.RequestHandlers

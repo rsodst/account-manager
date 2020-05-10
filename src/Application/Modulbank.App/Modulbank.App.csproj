@@ -6,6 +6,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Core\Modulbank.Data\Modulbank.Data.csproj" />
+      <ProjectReference Include="..\..\Core\Modulbank.Profiles\Modulbank.Profiles.csproj" />
+      <ProjectReference Include="..\..\Core\Modulbank.Rebus\Modulbank.Rebus.csproj" />
       <ProjectReference Include="..\..\Core\Modulbank.Users\Modulbank.Users.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Modulbank.Packages\Modulbank.Packages.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Modulbank.Settings\Modulbank.Settings.csproj" />

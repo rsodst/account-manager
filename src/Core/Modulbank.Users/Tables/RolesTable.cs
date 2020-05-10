@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Identity;
 using Modulbank.Data.Context;
-using Modulbank.Users.Models;
+using Modulbank.Users.Domain;
 
 namespace Modulbank.Users.Tables
 {

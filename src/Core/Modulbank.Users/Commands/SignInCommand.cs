@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Modulbank.Users.Models;
+using Modulbank.Users.Domain;
 
 namespace Modulbank.Users.Commands
 {

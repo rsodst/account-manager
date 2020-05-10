@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Modulbank.Settings;
-using Modulbank.Users.Models;
+using Modulbank.Users.Domain;
 
 namespace Modulbank.Users.Services
 {

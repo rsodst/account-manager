@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Modulbank.Users.Models;
+using Modulbank.Users.Domain;
 
 namespace Modulbank.App.StartupExtensions
 {
