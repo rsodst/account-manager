@@ -54,7 +54,7 @@ namespace Modulbank.App.Api.Controllers.Accounts
             return Ok(await _mediator.Send(query));
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         [SwaggerOperation(Tags = new[] {"Account"})]
         public async Task<IActionResult> Create([FromBody] AccountModel model)
         {
