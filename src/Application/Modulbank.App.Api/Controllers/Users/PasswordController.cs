@@ -12,7 +12,7 @@ namespace Modulbank.App.Api.Controllers.Users
 {
     [Route("user/password")]
     [ApiController]
-    [Authorize]
+    [Authorize("NotLockoutRequirement")]
     public class UpdatePasswordController : AppController
     {
         private readonly IMediator _mediator;

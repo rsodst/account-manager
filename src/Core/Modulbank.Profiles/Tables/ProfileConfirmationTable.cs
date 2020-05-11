@@ -9,7 +9,7 @@ using Modulbank.Shared.Exceptions;
 
 namespace Modulbank.Users.Tables
 {
-    public class ProfileConfirmationTable : IGeneralTable<ProfileConfirmation>
+    public class ProfileConfirmationTable 
     {
         private IProfilesContext _context;
 
@@ -23,11 +23,11 @@ namespace Modulbank.Users.Tables
             var command = "INSERT INTO public.\"ProfileConfirmation\" " +
                           " (" +
                           $"\"{nameof(ProfileConfirmation.Id)}\", " +
-                          $"\"{nameof(ProfileConfirmation.UserId)}\") " +
+                          $"\"{nameof(ProfileConfirmation.UserId)}\", " +
                           $"\"{nameof(ProfileConfirmation.CreationDate)}\", " +
                           $"\"{nameof(ProfileConfirmation.LastModified)}\", " +
                           $"\"{nameof(ProfileConfirmation.IsDeleted)}\", " +
-                          $"\"{nameof(ProfileConfirmation.Description)}\", " +
+                          $"\"{nameof(ProfileConfirmation.Description)}\") " +
                           "VALUES (@Id, @UserId, @CreationDate, @LastModified, @IsDeleted, @Description);";
 
             int rowsInserted;
@@ -56,14 +56,15 @@ namespace Modulbank.Users.Tables
                           "SET" +
                           $"\"{nameof(ProfileConfirmation.IsDeleted)}\" = @IsDeleted, " +
                           $"\"{nameof(ProfileConfirmation.LastModified)}\" = @LastModified" +
-                          $"where \"{nameof(ProfileConfirmation.UserId)}\" = @UserId";
+                          $" where \"{nameof(ProfileConfirmation.UserId)}\" = @UserId";
 
             using (var sqlConnection = await _context.CreateConnectionAsync())
             {
                 await sqlConnection.ExecuteAsync(command, new
                 {
                     profileConfirmation.IsDeleted,
-                    profileConfirmation.LastModified
+                    profileConfirmation.LastModified,
+                    profileConfirmation.UserId
                 });
             }
 

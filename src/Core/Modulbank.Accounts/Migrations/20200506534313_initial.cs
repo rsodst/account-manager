@@ -41,6 +41,8 @@ namespace Modulbank.Profiles.Migrations
                 .WithColumn("UserId").AsGuid().NotNullable()
                 .WithColumn("WriteOffAccount").AsGuid().NotNullable()
                 .WithColumn("DestinationAccount").AsGuid().NotNullable()
+                .WithColumn("Currency").AsInt32().NotNullable()
+                .WithColumn("Amount").AsDecimal().NotNullable()
                 .WithColumn("Type").AsInt32().NotNullable()
                 .WithColumn("Status").AsInt32().NotNullable()
                 .WithColumn("CreationDate").AsDateTime2().NotNullable()

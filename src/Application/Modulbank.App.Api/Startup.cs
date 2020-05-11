@@ -1,12 +1,20 @@
 using System;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Modulbank.App.AuthorizationPolicy;
 using Modulbank.App.Middleware;
 using Modulbank.App.StartupExtensions;
+using Modulbank.Profiles;
+using Modulbank.Users;
+using Modulbank.Users.Domain;
+using Modulbank.Users.Stores;
+using Modulbank.Users.Tables;
 
 namespace Modulbank.App.Api
 {
@@ -42,6 +50,24 @@ namespace Modulbank.App.Api
             services.RegisterRebus(Configuration);
 
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddAuthorization(options =>
+            {
+                var serviceProvider = services.BuildServiceProvider();
+
+                var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+                var profileContext = serviceProvider.GetService<IProfilesContext>();
+                
+                options.AddPolicy(typeof(NotLockoutRequirement).Name, builder =>
+                {
+                    builder.Requirements.Add(new NotLockoutRequirement(userManager));
+                });
+                
+                options.AddPolicy(typeof(ProfileConfirmedRequirement).Name, builder =>
+                {
+                    builder.Requirements.Add(new ProfileConfirmedRequirement(profileContext));
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

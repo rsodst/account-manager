@@ -10,7 +10,7 @@ namespace Modulbank.App.Api.Controllers.Users
 {
     [Route("profile/confirmation")]
     [ApiController]
-    [Authorize]
+    [Authorize("NotLockoutRequirement")]
     public class ConfirmationController : AppController
     {
         private readonly IMediator _mediator;

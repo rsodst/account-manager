@@ -12,7 +12,7 @@ namespace Modulbank.App.Api.Controllers.Users
 {
     [Route("profile/person-photo")]
     [ApiController]
-    [Authorize]
+    [Authorize("NotLockoutRequirement")]
     public class PersonPhotoController : AppController
     {
         private readonly IMediator _mediator;

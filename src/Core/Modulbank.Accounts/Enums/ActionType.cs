@@ -4,6 +4,8 @@
     {
         Create,
         Close,
-        Edit
+        Edit,
+        Refil,
+        Transfer
     }
 }

@@ -3,14 +3,15 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Modulbank.Users.Commands;
 using Modulbank.Users.Queries;
-using Modulbank.Users.Query;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Modulbank.App.Api.Controllers.Users
 {
     [Route("user")]
-    [ApiController, Authorize]
+    [ApiController]
+    [Authorize("NotLockoutRequirement")]
     public class UserController : AppController
     {
         private readonly IMediator _mediator;
@@ -21,7 +22,7 @@ namespace Modulbank.App.Api.Controllers.Users
         }
 
         [HttpGet]
-        [SwaggerOperation(Tags = new []{ "User"})]
+        [SwaggerOperation(Tags = new[] {"User"})]
         public async Task<IActionResult> Get()
         {
             var query = new GetUserQuery
@@ -30,6 +31,18 @@ namespace Modulbank.App.Api.Controllers.Users
             };
 
             return Ok(await _mediator.Send(query));
+        }
+
+        [HttpDelete]
+        [SwaggerOperation(Tags = new[] {"User"})]
+        public async Task<IActionResult> Delete()
+        {
+            var command = new DeleteUserCommand
+            {
+                UserId = CurrentUserId
+            };
+
+            return Ok(await _mediator.Send(command));
         }
     }
 }

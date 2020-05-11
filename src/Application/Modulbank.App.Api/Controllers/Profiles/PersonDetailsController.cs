@@ -15,7 +15,7 @@ namespace Modulbank.App.Api.Controllers.Users
 {
     [Route("profile/person-details")]
     [ApiController]
-    [Authorize]
+    [Authorize("NotLockoutRequirement")]
     public class PersonDetailsController : AppController
     {
         private readonly IMediator _mediator;

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Dapper;
@@ -9,7 +11,7 @@ using Modulbank.Shared.Exceptions;
 
 namespace Modulbank.Users.Tables
 {
-    public class TransactionsTable : IGeneralTable<Transaction>
+    public class TransactionsTable 
     {
         private readonly IAccountsContext _context;
 
@@ -28,9 +30,11 @@ namespace Modulbank.Users.Tables
                           $"\"{nameof(Transaction.DestinationAccount)}\", " +
                           $"\"{nameof(Transaction.Status)}\", " +
                           $"\"{nameof(Transaction.Type)}\", " +
-                          $"\"{nameof(Transaction.CreationDate)}\")" +
+                          $"\"{nameof(Transaction.Currency)}\", " +
+                          $"\"{nameof(Transaction.Amount)}\", " +
+                          $"\"{nameof(Transaction.CreationDate)}\"," +
                           $"\"{nameof(Transaction.ProceedDate)}\")" +
-                          "VALUES (@Id, @UserId, @WriteOffAccount, @DestinationAccount, @Status, @Type, @CreationDate,@ProceedDate);";
+                          "VALUES (@Id, @UserId, @WriteOffAccount, @DestinationAccount, @Status, @Type, @Currency, @Amount, @CreationDate,@ProceedDate);";
 
             int rowsInserted;
 
@@ -46,6 +50,8 @@ namespace Modulbank.Users.Tables
                     entity.Type,
                     entity.CreationDate,
                     entity.ProceedDate,
+                    entity.Currency,
+                    entity.Amount
                 });
             }
 
@@ -54,12 +60,7 @@ namespace Modulbank.Users.Tables
             return entity;
         }
 
-        public async Task<Transaction> UpdateAsync(Transaction entity)
-        {
-           throw new Exception();
-        }
-
-        public async Task<Transaction> GetAsync(Guid userId)
+        public async Task<List<Transaction>> GetListAsync(Guid userId)
         {
             var command = @"SELECT * " +
                           "FROM public.\"Transactions\" " +
@@ -67,7 +68,42 @@ namespace Modulbank.Users.Tables
 
             using (var sqlConnection = await _context.CreateConnectionAsync())
             {
-                return await sqlConnection.QueryFirstOrDefaultAsync<Transaction>(command, new {UserId = userId});
+                var result = await sqlConnection.QueryAsync<Transaction>(command, new {UserId = userId});
+
+                return result.ToList();
+            }
+        }
+        
+        public async Task<Transaction> UpdateAsync(Transaction entity)
+        {
+            var command = "UPDATE public.\"Transactions\" " +
+                          "SET" +
+                          $"\"{nameof(Transaction.Status)}\" = @Status, " +
+                          $"\"{nameof(Transaction.ProceedDate)}\" = @ProceedDate" +
+                          $" WHERE \"{nameof(Transaction.Id)}\" = @Id;";
+
+            using (var sqlConnection = await _context.CreateConnectionAsync())
+            {
+                await sqlConnection.ExecuteAsync(command, new
+                {
+                    entity.Id,
+                    entity.ProceedDate,
+                    entity.Status
+                });
+            }
+
+            return entity;
+        }
+        
+        public async Task<Transaction> GetByIdAsync(Guid transactionId)
+        {
+            var command = @"SELECT * " +
+                          "FROM public.\"Transactions\" " +
+                          $"WHERE \"{nameof(Transaction.Id)}\" = @TransactionId;";
+
+            using (var sqlConnection = await _context.CreateConnectionAsync())
+            {
+                return await sqlConnection.QueryFirstOrDefaultAsync<Transaction>(command, new {TransactionId = transactionId});
             }
         }
     }

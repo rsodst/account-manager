@@ -9,7 +9,7 @@ namespace Modulbank.App.Api.Controllers.Storage
 {
     [Route("storage/person-photo")]
     [ApiController]
-    [Authorize]
+    [Authorize("NotLockoutRequirement")]
     public class FileStorageController : AppController
     {
         private readonly IMediator _mediator;

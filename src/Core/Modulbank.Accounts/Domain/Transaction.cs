@@ -15,6 +15,10 @@ namespace Modulbank.Accounts.Domain
         
         public Guid UserId { get; set; }
         
+        public Decimal Amount { get; set; }
+        
+        public Currency Currency { get; set; }
+        
         public Guid WriteOffAccount { get; set; }
         
         public Guid DestinationAccount { get; set; }
@@ -23,7 +27,7 @@ namespace Modulbank.Accounts.Domain
         
         public DateTime CreationDate { get; set; }
         
-        public string ProceedDate { get; set; }
+        public DateTime ProceedDate { get; set; }
         
         public TransactionStatus Status { get; set; }
     }

@@ -9,7 +9,7 @@ using Modulbank.Shared.Exceptions;
 
 namespace Modulbank.Users.Tables
 {
-    public class PersonPhotoTable : IGeneralTable<PersonPhoto>
+    public class PersonPhotoTable 
     {
         private IProfilesContext _context;
 

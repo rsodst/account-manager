@@ -14,9 +14,10 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Modulbank.App.Api.Controllers.Accounts
 {
-    [Route("account")]
+    [Route("accounts")]
     [ApiController]
-    [Authorize]
+    [Authorize("NotLockoutRequirement")]
+    [Authorize("ProfileConfirmedRequirement")]
     public class AccountsController : AppController
     {
         private readonly IMediator _mediator;

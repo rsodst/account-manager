@@ -4,12 +4,14 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Modulbank.Accounts.Queries;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Modulbank.App.Api.Controllers.Accounts
 {
-    [Route("accounts")]
+    [Route("accounts/{accountId}")]
     [ApiController]
-    [Authorize]
+    [Authorize("NotLockoutRequirement")]
+    [Authorize("ProfileConfirmedRequirement")]
     public class AccountActionsController : AppController
     {
         private readonly IMediator _mediator;
@@ -19,7 +21,8 @@ namespace Modulbank.App.Api.Controllers.Accounts
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [HttpGet("{accountId}/{skip}/{take}")]
+        [HttpGet("actions/{skip}/{take}")]
+        [SwaggerOperation(Tags = new[] {"Account"})]
         public async Task<IActionResult> GetList(Guid accountId, int skip, int take)
         {
             var query = new GetAccountActionsQuery
