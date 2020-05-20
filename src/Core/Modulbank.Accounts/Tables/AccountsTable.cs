@@ -174,6 +174,37 @@ namespace Modulbank.Users.Tables
             }
         }
         
+        public async Task<Account> GetByNumberAsync(long number)
+        {
+            var getAccountCommand = @"SELECT * " +
+                                    "FROM public.\"Accounts\" " +
+                                    $"WHERE \"{nameof(Account.Number)}\" = @Number AND " +
+                                    $"\"{nameof(Account.IsDeleted)}\" = false;";
+
+            var getAccountDetailsCommand = @"SELECT * " +
+                                           "FROM public.\"AccountDetails\" " +
+                                           $"WHERE \"{nameof(AccountDetail.AccountId)}\" = @AccountId;";
+            
+            using (var sqlConnection = await _context.CreateConnectionAsync())
+            {
+                var account =  await sqlConnection.QueryFirstOrDefaultAsync<Account>(getAccountCommand, new
+                {
+                    Number = number
+                });
+
+                if (account == null) return account;
+                
+                var accountDetail = await sqlConnection.QueryFirstOrDefaultAsync<AccountDetail>(getAccountDetailsCommand, new
+                {
+                    AccountId = account.Id,
+                });
+
+                account.AccountDetail = accountDetail;
+
+                return account;
+            }
+        }
+        
         public async Task<Account> GetByIdAsync(Guid accountId)
         {
             var getAccountCommand = @"SELECT * " +

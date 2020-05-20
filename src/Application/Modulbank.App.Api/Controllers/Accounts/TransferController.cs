@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Modulbank.Accounts.Commands;
 using Modulbank.Accounts.Enums;
+using Modulbank.Accounts.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Modulbank.App.Api.Controllers.Accounts
@@ -30,12 +31,24 @@ namespace Modulbank.App.Api.Controllers.Accounts
         [SwaggerOperation(Tags = new[] {"Account"})]
         public async Task<IActionResult> Post(TransferModel model, Guid accountId)
         {
+            var findAccountQuery = new FindAccountQuery();
+
+            findAccountQuery.Number = model.DestinationAccountNumber;
+            
+            var destinationAccount = await _mediator.Send(findAccountQuery);
+
+            if (destinationAccount == null)
+            {
+                return BadRequest("Destination account not found");
+            }
+            
             var startTransactionCommand = model.Adapt<StartTransactionCommand>();
 
             startTransactionCommand.UserId = CurrentUserId;
             startTransactionCommand.WriteOffAccount = accountId;
             startTransactionCommand.Type = TransactionType.Transfer;
-
+            startTransactionCommand.DestinationAccount = destinationAccount.Id;
+            
             var transaction = await _mediator.Send(startTransactionCommand);
 
             try
@@ -77,7 +90,7 @@ namespace Modulbank.App.Api.Controllers.Accounts
 
         public class TransferModel
         {
-            public Guid DestinationAccount { get; set; }
+            public long DestinationAccountNumber { get; set; }
 
             public decimal Amount { get; set; }
 
