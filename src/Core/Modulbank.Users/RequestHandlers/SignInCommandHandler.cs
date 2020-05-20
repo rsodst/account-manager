@@ -25,12 +25,19 @@ namespace Modulbank.Users.RequestHandlers
         public async Task<UserToken> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByNameAsync(request.Email);
-
+            
             if (user == null)
             {
                 throw new ApplicationApiException(HttpStatusCode.BadRequest,"User not found");
             }
 
+            var userIsLockedOut = await _userManager.IsLockedOutAsync(user);
+
+            if (userIsLockedOut)
+            {
+                throw new ApplicationApiException(HttpStatusCode.BadRequest,"Account has been deleted");
+            }
+            
             var result = await _userManager.CheckPasswordAsync(user, request.Password);
 
             if (result == false)

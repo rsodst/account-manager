@@ -7,6 +7,10 @@ namespace Modulbank.Users.Domain
     {
         public Guid UserId { get; set; }
 
+        public string Email { get; set; }
+        
+        public DateTime IssuedDate { get; set; }
+        
         [JsonIgnore]
         public string LoginProvider { get; set; }
 

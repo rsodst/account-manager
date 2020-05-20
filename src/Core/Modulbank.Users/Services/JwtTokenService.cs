@@ -51,6 +51,8 @@ namespace Modulbank.Users.Services
             {
                 Value = encodedJwt,
                 UserId = user.Id,
+                Email = user.Email,
+                IssuedDate = DateTime.UtcNow
             };
 
             return response;

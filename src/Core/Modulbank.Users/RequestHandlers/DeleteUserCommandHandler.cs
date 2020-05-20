@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,6 +27,16 @@ namespace Modulbank.Users.RequestHandlers
             if (user == null)
             {
                 throw new ApplicationApiException(HttpStatusCode.BadRequest,"User not found");
+            }
+
+            user.Email = $"{user.Email}|{DateTime.UtcNow}";
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded == false)
+            {
+                var errors = String.Join("", result.Errors.Select(p => $"{p.Code}, {p.Description}").ToList());
+                throw  new ApplicationApiException(HttpStatusCode.BadRequest, $"Unable to delete account, {errors}");
             }
 
             await _userManager.SetLockoutEnabledAsync(user, true);
