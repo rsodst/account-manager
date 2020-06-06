@@ -31,7 +31,7 @@ namespace Modulbank.App.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureApplicationOptions(Configuration);
+            services.ConfigureApplicationOptions(Configuration, Environment);
 
             //services.ConfigureApplicationLogging();
 

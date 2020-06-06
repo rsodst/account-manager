@@ -28,7 +28,7 @@ namespace Modulbank.MessageHandlers
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureApplicationOptions(Configuration);
+            services.ConfigureApplicationOptions(Configuration, Environment);
 
             //services.ConfigureApplicationLogging();
             
