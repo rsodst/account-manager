@@ -17,6 +17,7 @@ COPY src/Core/Modulbank.Users/*.csproj src/Core/Modulbank.Users/
 # infrastructure
 COPY src/Infrastructure/Modulbank.Packages/*.csproj src/Infrastructure/Modulbank.Packages/
 COPY src/Infrastructure/Modulbank.Settings/*.csproj src/Infrastructure/Modulbank.Settings/
+COPY src/Infrastructure/Modulbank.Utils/*.csproj src/Infrastructure/Modulbank.Utils/
 RUN dotnet restore
 COPY . .
 
@@ -30,5 +31,5 @@ RUN dotnet publish -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ASPNETCORE_ENVIRONMENT=Production
+CMD ASPNETCORE_ENVIRONMENT=Staging
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet Modulbank.App.Api.dll
