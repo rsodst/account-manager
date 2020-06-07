@@ -38,7 +38,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modulbank.FileStorage", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modulbank.Accounts", "src\Core\Modulbank.Accounts\Modulbank.Accounts.csproj", "{072A78B4-D031-4822-A6BE-727B46486F81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulbank.Utils", "Modulbank.Utils\Modulbank.Utils.csproj", "{6A49B28E-7D4E-4B2C-8890-6AEB99DACBEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulbank.Utils", "src\Infrastructure\Modulbank.Utils\Modulbank.Utils.csproj", "{20D66747-666C-45DA-8BC5-C17C333C356F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,10 +94,10 @@ Global
 		{072A78B4-D031-4822-A6BE-727B46486F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{072A78B4-D031-4822-A6BE-727B46486F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{072A78B4-D031-4822-A6BE-727B46486F81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A49B28E-7D4E-4B2C-8890-6AEB99DACBEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A49B28E-7D4E-4B2C-8890-6AEB99DACBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A49B28E-7D4E-4B2C-8890-6AEB99DACBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A49B28E-7D4E-4B2C-8890-6AEB99DACBEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20D66747-666C-45DA-8BC5-C17C333C356F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20D66747-666C-45DA-8BC5-C17C333C356F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20D66747-666C-45DA-8BC5-C17C333C356F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20D66747-666C-45DA-8BC5-C17C333C356F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,7 +115,7 @@ Global
 		{C399CFAE-AA7A-4BC1-8229-C97F25ED3B8D} = {4294C349-3077-4FDF-937C-13BBF9CD47CC}
 		{8141B46F-3839-48DF-BE1F-AA0A8B9F3EEF} = {4294C349-3077-4FDF-937C-13BBF9CD47CC}
 		{072A78B4-D031-4822-A6BE-727B46486F81} = {4294C349-3077-4FDF-937C-13BBF9CD47CC}
-		{6A49B28E-7D4E-4B2C-8890-6AEB99DACBEF} = {2503247A-A146-416E-B22A-C57BC732B5A4}
+		{20D66747-666C-45DA-8BC5-C17C333C356F} = {2503247A-A146-416E-B22A-C57BC732B5A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuId = {1E049ADF-934C-415B-888C-BAA480AF6A90}
