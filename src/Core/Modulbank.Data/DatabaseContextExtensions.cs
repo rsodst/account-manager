@@ -10,7 +10,7 @@ namespace Modulbank.Data
         {
             var databaseCreator = new DatabaseCreator<TDatabaseContext>(context);
 
-            databaseCreator.Create();
+            databaseCreator.CreateIfNotExist();
         }
         
         public static void TryApplyMigration<TDatabaseContext>(this TDatabaseContext context, Type initialMigrationType)

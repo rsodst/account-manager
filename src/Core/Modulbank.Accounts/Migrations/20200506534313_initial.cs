@@ -23,11 +23,6 @@ namespace Modulbank.Profiles.Migrations
             ""LastModified"" timestamp without time zone NOT NULL,
                 CONSTRAINT ""PK_Accounts"" PRIMARY KEY (""Id"")
                 )
-
-            TABLESPACE pg_default;
-
-            ALTER TABLE public.""Accounts""
-            OWNER to postgres;
             ");
 
             Create.Table("AccountActions")

@@ -8,6 +8,8 @@ namespace Modulbank.App
 {
     public class AppController : ControllerBase
     {
-        public Guid CurrentUserId => Guid.Parse(HttpContext.User?.Claims?.FirstOrDefault(p => p.Type == ClaimTypes.NameIdentifier)?.Value ?? throw new Exception($"UserId is null or empty"));
+        public Guid CurrentUserId 
+            => Guid.Parse(HttpContext.User?.Claims?.FirstOrDefault(p => p.Type == ClaimTypes.NameIdentifier)?.Value 
+                       ?? throw new Exception($"UserId is null or empty"));
     }
 }

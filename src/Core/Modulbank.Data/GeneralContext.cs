@@ -16,17 +16,31 @@ namespace Modulbank.Data.Context
         public readonly string DatabaseName;
         public readonly string DatabaseOwner = "postgres";
         public readonly string PostgresConnectionString;
+        public readonly string MaintenanceConnectionString;
 
-        protected GeneralContext(IOptions<PostgresConnectionOptions> connectionDetails, string databaseName)
+        protected GeneralContext(PostgresConnectionOptions connectionOptions)
         {
-            PostgresConnectionString = $"server={connectionDetails.Value.Server};" +
-                                       $"userId={connectionDetails.Value.UserId};" +
-                                       $"password={connectionDetails.Value.Password};" +
-                                       $"Pooling={connectionDetails.Value.Pooling};";
+            DatabaseName = connectionOptions.DatabaseName;
+            DatabaseOwner = connectionOptions.DatabaseOwner;
 
-            ConnectionString = PostgresConnectionString + $"Database={databaseName};";
+            PostgresConnectionString = $"server={connectionOptions.Server};" +
+                                       $"userId={connectionOptions.UserId};" +
+                                       $"password={connectionOptions.Password};" +
+                                       $"Pooling={connectionOptions.Pooling};";
+                                       
+            if (string.IsNullOrEmpty(connectionOptions.SslMode) == false)
+            {
+                PostgresConnectionString += $"Sslmode={connectionOptions.SslMode};";
+            }
+                                       
+            if (connectionOptions.TrustServerCertificate.HasValue)
+            {
+                PostgresConnectionString += $"Trust Server Certificate={connectionOptions.TrustServerCertificate};";
+            }
 
-            DatabaseName = databaseName;
+            ConnectionString = PostgresConnectionString + $"Database={connectionOptions.DatabaseName};";
+            MaintenanceConnectionString = PostgresConnectionString + $"Database={connectionOptions.MaintenanceDatabase};";
+
         }
 
         public virtual async Task<NpgsqlConnection> CreateConnectionAsync()

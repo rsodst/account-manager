@@ -12,7 +12,7 @@ namespace Modulbank.Data.Context
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public void Create()
+        public void CreateIfNotExist()
         {
             var databaseExists = CheckDatabaseExists();
 
@@ -23,7 +23,7 @@ namespace Modulbank.Data.Context
 
         private bool CheckDatabaseExists()
         {
-            using (var connection = new NpgsqlConnection(_context.PostgresConnectionString))
+            using (var connection = new NpgsqlConnection(_context.MaintenanceConnectionString))
             {
                 var query = $"SELECT DATNAME FROM pg_catalog.pg_database WHERE DATNAME = '{_context.DatabaseName}'";
 
@@ -42,7 +42,7 @@ namespace Modulbank.Data.Context
 
         private void CreateDatabase()
         {
-            using (var connection = new NpgsqlConnection(_context.PostgresConnectionString))
+            using (var connection = new NpgsqlConnection(_context.MaintenanceConnectionString))
             {
                 var query = $"CREATE DATABASE \"{_context.DatabaseName}\" WITH OWNER = {_context.DatabaseOwner} ENCODING = 'UTF8' CONNECTION LIMIT = -1;";
 

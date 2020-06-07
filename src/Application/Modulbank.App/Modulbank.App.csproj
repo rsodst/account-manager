@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\Modulbank.Utils\Modulbank.Utils.csproj" />
       <ProjectReference Include="..\..\Core\Modulbank.Accounts\Modulbank.Accounts.csproj" />
       <ProjectReference Include="..\..\Core\Modulbank.Data\Modulbank.Data.csproj" />
       <ProjectReference Include="..\..\Core\Modulbank.FileStorage\Modulbank.FileStorage.csproj" />

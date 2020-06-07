@@ -1,6 +1,8 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Modulbank.Data.Context;
 using Modulbank.Settings;
 using Modulbank.Users.Messages;
 using Rebus.Config;
@@ -15,7 +17,9 @@ namespace Modulbank.App.StartupExtensions
     {
         public static IServiceCollection RegisterRebus(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionOptions = configuration.GetSection(typeof(PostgresConnectionOptions).Name).Get<PostgresConnectionOptions>();
+            var connections  = configuration.GetSection(typeof(PostgresConnections).Name).Get<PostgresConnections>();
+
+            var connectionOptions = connections.connectionOptions.Single(p => p.Context == typeof(BusContext).Name);
 
             var connectionString = $"server={connectionOptions.Server};" +
                                    $"userId={connectionOptions.UserId};" +

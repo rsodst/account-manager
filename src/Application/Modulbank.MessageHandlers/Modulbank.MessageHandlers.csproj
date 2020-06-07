@@ -5,8 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="..\..\Infrastructure\appsettings.Development.json" Link="appsettings.Development.json" CopyToOutputDirectory="PreserveNewest" />
-        <Content Include="..\..\Infrastructure\appsettings.Production.json" Link="appsettings.Production.json" CopyToOutputDirectory="PreserveNewest" />
+      <Content Include="..\..\Infrastructure\appsettings.Development.json" Link="appsettings.Development.json" CopyToOutputDirectory="PreserveNewest" />
+      <Content Include="..\..\Infrastructure\appsettings.Staging.json" Link="appsettings.Staging.json" CopyToOutputDirectory="PreserveNewest" />
+      <Content Include="..\..\Infrastructure\appsettings.Production.json" Link="appsettings.Production.json" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
     
     <ItemGroup>
